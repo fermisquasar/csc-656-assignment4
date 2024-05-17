@@ -30,6 +30,11 @@ int main(void) {
         y[i] = 2.0f;
     }
 
+    int deviceID = 0;
+
+    cudaMemPrefetchAsync((void *)x, N*sizeof(float), deviceID);
+    cudaMemPrefetchAsync((void *)y, N*sizeof(float), deviceID);
+
     //Vector addition
     add<<<numBlocks, blockSize>>>(N, x, y);
 
