@@ -1,5 +1,4 @@
 #include <iostream>
-#include <chrono>
 #include <vector>
 #include <math.h>
 
@@ -24,18 +23,14 @@ int main(void) {
         y[i] = 2.0f;
     }
 
-    //Start timer
-    auto start = std::chrono::high_resolution_clock::now();
-
     //Vector addition
     add<<<1, 1>>>(N, x, y);
 
-    //Stop timer
-    auto stop = std::chrono::high_resolution_clock::now();
+    // Wait for GPU to finish before accessing on host
+    cudaDeviceSynchronize();
 
-    //Calculate time passed
-    std::chrono::duration<float, std::milli> duration_ms = stop - start;
-    std::cout << "Time passed: " << duration_ms.count() << " ms\n";
+
+//    std::cout << "Time passed: " << duration_ms.count() << " ms\n";
 
     //Check results
     float maxError = 0.0f;
