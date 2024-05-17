@@ -36,10 +36,11 @@ int main(void) {
     std::cout << "Time passed: " << duration_ms.count() << " ms\n";
 
     //Check results
-    float maxError = 0.0f;
     for (int i = 0; i < N; i++) {
-        maxError = fmax(maxError, fabs(y[i]-3.0f));
-        std::cout << "Max error: " << maxError << std::endl;
+        if (y[i] != 3.0f) {
+            std::cerr << i << " is incorrect!\n";
+            break;
+        }
     }
 
     //Free resources
