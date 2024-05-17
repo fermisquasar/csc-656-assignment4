@@ -39,8 +39,8 @@ int main(void) {
     float maxError = 0.0f;
     for (int i = 0; i < N; i++) {
         maxError = fmax(maxError, fabs(y[i]-3.0f));
-        std::cout << "Max error: " << maxError << std::endl;
     }
+    std::cout << "Max error: " << maxError << std::endl;
 
     //Free resources
     delete[] x;
